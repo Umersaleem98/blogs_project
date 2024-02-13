@@ -1,3 +1,4 @@
+<?php include 'connection/connection.php';?>
 <!doctype html>
 <html lang="en">
 
@@ -44,15 +45,34 @@
                     <h2 class="contact-title">Get in Touch</h2>
                 </div>
                 <div class="col-lg-8">
-                    <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm"
-                        novalidate="novalidate">
+                    <form class="form-contact contact_form" enctype="multipart/form-data" action="" method="post"
+                        id="contactForm" novalidate="novalidate">
                         <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input class="form-control" name="post_name" id="name" type="text"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'"
+                                        placeholder='Enter your Post name'>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+
+                                    <select name="post_type" id="" class="form-control">
+                                        <option value="News">News</option>
+                                        <option value="Fachion">Fachion</option>
+                                        <option value="Beauty_Product">Beauty Product</option>
+                                        <option value="Sports">Sports</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="col-12">
                                 <div class="form-group">
 
-                                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
-                                        placeholder='Enter Message'></textarea>
+                                    <textarea class="form-control w-100" name="post_description" id="message" cols="30"
+                                        rows="9" onfocus="this.placeholder = ''"
+                                        onblur="this.placeholder = 'Enter Message'"
+                                        placeholder='Enter Post Description'></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -72,17 +92,65 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input class="form-control" name="subject" id="subject" type="text"
+                                    <input class="form-control" name="post_subject" id="subject" type="text"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'"
+                                        placeholder='Enter Subject'>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input class="form-control" name="images" id="subject" type="file"
                                         onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'"
                                         placeholder='Enter Subject'>
                                 </div>
                             </div>
                         </div>
+
                         <div class="load_btn">
-                            <a href="#" class="btn_1">Send Message </a>
+                            <input type="submit" class="btn_1" name="submit">
+                            <!-- <a href="#" class="btn_1">Send Message </a> -->
                         </div>
                     </form>
                 </div>
+
+                <?php
+
+if (isset($_POST['submit'])) {
+    // Retrieve form data
+    $post_name = $_POST['post_name'];
+    $post_type = $_POST['post_type'];
+    $post_description = $_POST['post_description'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $post_subject = $_POST['post_subject'];
+
+    // Handle file upload
+    $image = $_FILES['images']['name'];
+    $image_temp = $_FILES['images']['tmp_name'];
+    $image_path = "uploads/" . $image; // Adjust the directory path as needed
+
+    // Move uploaded file to the desired location
+    move_uploaded_file($image_temp, $image_path);
+
+    // SQL injection prevention (you can enhance this based on your specific requirements)
+
+    // Insert data into the database
+    $sql = "INSERT INTO `posts`(`post_name`, `post_type`, `post_description`, `name`, `email`, `post_subject`, `images`)
+            VALUES ('$post_name', '$post_type', '$post_description', '$name', '$email', '$post_subject', '$image_path')";
+
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        echo "<script>alert('Data inserted successfully');</script>";
+    } else {
+        // Display error message using JavaScript alert
+        echo "<script>alert('Data insertion failed');</script>";
+    }
+
+}
+
+?>
+
+
                 <div class="col-lg-4">
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="ti-home"></i></span>
@@ -109,6 +177,10 @@
             </div>
         </div>
     </section>
+
+
+
+
     <!-- ================ contact section end ================= -->
 
     <!-- social_connect_part part start-->
