@@ -42,25 +42,25 @@
 
 
             <li class="nav-item">
-                <a class="nav-link text-white " href="./billing.html">
+                <a class="nav-link text-white " href="add_cover_post.php">
 
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">receipt_long</i>
                     </div>
 
-                    <span class="nav-link-text ms-1">Billing</span>
+                    <span class="nav-link-text ms-1">Add Cover Post</span>
                 </a>
             </li>
 
 
             <li class="nav-item">
-                <a class="nav-link text-white " href="./virtual-reality.html">
+                <a class="nav-link text-white " href="cover_post_view.php">
 
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">view_in_ar</i>
                     </div>
 
-                    <span class="nav-link-text ms-1">Virtual Reality</span>
+                    <span class="nav-link-text ms-1">Cover Post View</span>
                 </a>
             </li>
 
@@ -78,13 +78,13 @@
 
 
             <li class="nav-item">
-                <a class="nav-link text-white " href="./notifications.html">
+                <a class="nav-link text-white " href="logout.php">
 
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">notifications</i>
                     </div>
 
-                    <span class="nav-link-text ms-1">Notifications</span>
+                    <span class="nav-link-text ms-1">Logout</span>
                 </a>
             </li>
 

@@ -31,8 +31,8 @@
                                     Pages
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="single-blog.php">Signin</a>
-                                    <a class="dropdown-item" href="elements.php">SignUp</a>
+                                    <a class="dropdown-item" href="./login.php">Signin</a>
+
                                 </div>
                             </li>
                         </ul>
